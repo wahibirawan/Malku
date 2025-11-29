@@ -1,65 +1,154 @@
-import Image from "next/image";
+import { NisabCard } from "@/components/NisabCard";
+import { CalculatorSection } from "@/components/CalculatorSection";
+import { FAQSection } from "@/components/FAQSection";
+import { Header } from "@/components/Header";
+import { HowItWorks } from "@/components/HowItWorks";
+import { ZakatObligation } from "@/components/ZakatObligation";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { AlertCircle, ArrowDown, CheckCircle2 } from "lucide-react";
+import { getGoldPriceData } from "@/lib/gold-price";
+import Link from "next/link";
 
-export default function Home() {
+export const revalidate = 600;
+
+export default async function Home() {
+  let data = null;
+  let error = null;
+
+  try {
+    data = await getGoldPriceData();
+  } catch (e) {
+    console.error("Failed to fetch gold price data", e);
+    error = "Kami belum bisa memuat data harga emas. Coba muat ulang halaman beberapa saat lagi.";
+  }
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <div className="min-h-screen bg-background flex flex-col font-sans antialiased selection:bg-primary/20">
+      <Header />
+
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden pt-32 pb-24 lg:pt-48 lg:pb-24 bg-background">
+          {/* Subtle Background Gradient */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-background to-background -z-10" />
+
+          <div className="container px-4 md:px-6 mx-auto max-w-6xl">
+            <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-center">
+              {/* Text Content */}
+              <div className="space-y-8 text-center lg:text-left">
+
+                <div className="space-y-5">
+                  <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl lg:leading-[1.1]">
+                    Tunaikan Zakat <br className="hidden lg:block" />
+                    <span className="text-primary relative inline-block">
+                      Sesuai Syariat
+                      <svg className="absolute w-full h-3 -bottom-1 left-0 text-primary/20" viewBox="0 0 100 10" preserveAspectRatio="none">
+                        <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
+                      </svg>
+                    </span>
+                  </h1>
+                  <p className="mx-auto lg:mx-0 max-w-[540px] text-base text-muted-foreground md:text-lg leading-relaxed">
+                    Platform kalkulator zakat terpercaya dengan data real-time. Hitung kewajiban Anda dengan akurat, transparan, dan mudah.
+                  </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4 w-full sm:w-auto px-4 sm:px-0">
+                  <Link href="#calculator" className="w-full sm:w-auto">
+                    <Button size="lg" className="w-full sm:w-auto">
+                      Hitung Zakat Sekarang
+                    </Button>
+                  </Link>
+                  <Link href="#how-it-works" className="w-full sm:w-auto">
+                    <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                      Pelajari Cara Kerja
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Visual Content (Nisab Card + Illustration) */}
+              <div className="relative mx-auto lg:mr-0 max-w-md lg:max-w-lg w-full perspective-1000">
+                {/* Decorative blob behind card */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-primary/10 to-secondary/10 rounded-full blur-2xl -z-10" />
+
+                {error ? (
+                  <Alert variant="destructive">
+                    <AlertCircle className="h-4 w-4" />
+                    <AlertTitle>Error</AlertTitle>
+                    <AlertDescription>{error}</AlertDescription>
+                  </Alert>
+                ) : data ? (
+                  <div className="relative z-10 transform transition-transform hover:scale-[1.01] duration-500">
+                    <NisabCard
+                      nisabRecommendedIDR={data.nisab.recommendedIDR}
+                      nisabMinIDR={data.nisab.minIDR}
+                      nisabMaxIDR={data.nisab.maxIDR}
+                      recommendedGoldPricePerGramIDR={data.prices.perGramIDR.recommendedRounded}
+                      updatedAt={data.updatedAt}
+                    />
+                  </div>
+                ) : (
+                  <div className="h-64 w-full bg-muted/20 animate-pulse rounded-2xl" />
+                )}
+              </div>
+            </div>
+
+            {/* Trusted Institutions (Sponsor Style) */}
+            <div className="mt-20 pt-10 border-t border-border/40">
+              <p className="text-sm font-semibold text-muted-foreground text-center mb-8">
+                Salurkan Zakat Maal ke lembaga terpercaya:
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-80">
+                <div className="relative h-16 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
+                  <img src="/logos/lazismu.png" alt="Lazismu" className="h-full w-auto object-contain" />
+                </div>
+                <div className="relative h-14 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
+                  <img src="/logos/nucare.png" alt="NU Care-Lazisnu" className="h-full w-auto object-contain" />
+                </div>
+                <div className="relative h-16 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
+                  <img src="/logos/baznas.png" alt="Baznas" className="h-full w-auto object-contain" />
+                </div>
+                <div className="relative h-10 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
+                  <img src="/logos/dompet-dhuafa.png" alt="Dompet Dhuafa" className="h-full w-auto object-contain" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works */}
+        <section id="how-it-works">
+          <HowItWorks />
+        </section>
+
+        {/* Zakat Obligation Education */}
+        <ZakatObligation />
+
+        {/* Calculator Section */}
+        <section className="py-20 relative scroll-mt-20" id="calculator">
+          <div className="container px-4 mx-auto">
+            {data && (
+              <CalculatorSection
+                nisabRecommendedIDR={data.nisab.recommendedIDR}
+                recommendedGoldPricePerGramIDR={data.prices.perGramIDR.recommendedRounded}
+              />
+            )}
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16 container px-4 mx-auto" id="faq">
+          <FAQSection />
+        </section>
       </main>
+
+      <footer className="py-12 border-t border-border/40">
+        <div className="container px-4 md:px-6 mx-auto max-w-6xl text-center text-muted-foreground">
+          <p>&copy; {new Date().getFullYear()} Malku. All rights reserved.</p>
+          <p className="text-sm mt-2">Dibuat dengan <span className="text-red-500">❤</span> untuk umat.</p>
+        </div>
+      </footer>
     </div>
   );
 }
