@@ -38,8 +38,8 @@ export default async function Home() {
               {/* Text Content */}
               <div className="space-y-8 text-center lg:text-left">
 
-                <div className="space-y-5">
-                  <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl lg:leading-[1.1]">
+                <div className="space-y-8">
+                  <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-6xl lg:leading-[1.1]">
                     Tunaikan Zakat <br className="hidden lg:block" />
                     <span className="text-primary relative inline-block">
                       Sesuai Syariat
@@ -53,7 +53,7 @@ export default async function Home() {
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4 w-full sm:w-auto px-4 sm:px-0">
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-4 w-full sm:w-auto px-4 sm:px-0">
                   <Link href="#calculator" className="w-full sm:w-auto">
                     <Button size="lg" className="w-full sm:w-auto">
                       Hitung Zakat Sekarang

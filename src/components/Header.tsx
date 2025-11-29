@@ -10,7 +10,7 @@ export function Header() {
 
     return (
         <>
-            <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl rounded-2xl bg-white/80 backdrop-blur-md border border-border/40 shadow-lg transition-all duration-200">
+            <header className="fixed top-3 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl rounded-2xl bg-white/80 backdrop-blur-md border border-border/40 shadow-lg transition-all duration-200">
                 <div className="px-6 h-16 flex items-center justify-between">
                     <Link href="/" className="flex items-center gap-2.5 group">
                         <div className="h-9 w-9 rounded-xl bg-primary/10 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-200">
@@ -57,7 +57,7 @@ export function Header() {
 
             {/* Mobile Menu Overlay */}
             {isMobileMenuOpen && (
-                <div className="fixed inset-0 z-40 bg-background pt-28 px-6 md:hidden animate-in fade-in slide-in-from-top-5 duration-200">
+                <div className="fixed inset-0 z-40 bg-background pt-20 px-6 md:hidden animate-in fade-in slide-in-from-top-5 duration-200">
                     <nav className="flex flex-col gap-6 text-center">
                         <Link
                             href="#about"
