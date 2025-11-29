@@ -1,17 +1,32 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     return (
         <>
-            <header className="fixed top-3 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl rounded-2xl bg-white/80 backdrop-blur-md border border-border/40 shadow-lg transition-all duration-200">
-                <div className="px-6 h-16 flex items-center justify-between">
+            <header
+                className={`fixed top-3 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl rounded-2xl transition-all duration-300 ${isScrolled && !isMobileMenuOpen
+                    ? "bg-white/80 backdrop-blur-md border border-border/40 shadow-lg"
+                    : "bg-transparent border-transparent shadow-none"
+                    }`}
+            >
+                <div className="p-4 flex items-center justify-between">
                     <Link href="/" className="flex items-center gap-2.5 group">
                         <div className="h-9 w-9 rounded-xl bg-primary/10 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-200">
                             {/* 3 Stacked Gold Bars Icon */}
@@ -80,12 +95,10 @@ export function Header() {
                         >
                             FAQ
                         </Link>
-                        <Link
-                            href="#calculator"
-                            className="mt-4 inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-md hover:bg-primary/90 transition-all"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            Hitung Zakat Sekarang
+                        <Link href="#calculator" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 w-full">
+                            <Button className="w-full h-11 text-sm font-semibold rounded-xl shadow-md">
+                                Hitung Zakat Sekarang
+                            </Button>
                         </Link>
                     </nav>
                 </div>

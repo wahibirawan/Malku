@@ -2,10 +2,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 export function FAQSection() {
     return (
-        <section className="w-full max-w-3xl mx-auto py-12">
-            <div className="text-center mb-10">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-foreground pb-4">Pertanyaan Umum</h2>
-                <p className="text-muted-foreground">
+        <section className="w-full max-w-3xl mx-auto py-8 md:py-12">
+            <div className="text-center mb-8 md:mb-10">
+                <h2 className="text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl text-foreground pb-2 md:pb-4">Pertanyaan Umum</h2>
+                <p className="text-muted-foreground text-sm md:text-base">
                     Informasi seputar perhitungan zakat maal dan sumber data kami.
                 </p>
             </div>

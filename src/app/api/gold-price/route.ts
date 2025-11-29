@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getGoldPriceData } from '@/lib/gold-price';
 
-export const revalidate = 600; // Revalidate every 10 minutes
+export const revalidate = 3600; // Revalidate every 1 hour
 
 export async function GET() {
     try {

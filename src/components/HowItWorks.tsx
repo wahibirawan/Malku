@@ -23,17 +23,17 @@ export function HowItWorks() {
     ];
 
     return (
-        <section className="py-24" id="how-it-works">
+        <section className="py-12 md:py-24" id="how-it-works">
             <div className="container px-4 md:px-6 mx-auto max-w-6xl">
                 <div className="text-center mb-16 space-y-4">
-                    <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground">Cara Kerja</h2>
-                    <p className="mx-auto max-w-[600px] text-muted-foreground text-lg">
+                    <h2 className="text-2xl font-bold tracking-tight sm:text-4xl text-foreground">Cara Kerja</h2>
+                    <p className="mx-auto max-w-[600px] text-muted-foreground text-base sm:text-lg">
                         Proses perhitungan zakat yang transparan dan mudah dipahami dalam 3 langkah sederhana.
                     </p>
                 </div>
-                <div className="grid gap-8 md:grid-cols-3">
+                <div className="grid gap-4 md:grid-cols-3 md:gap-8">
                     {steps.map((step, index) => (
-                        <div key={index} className="group relative bg-white/60 backdrop-blur-md rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-white/50 hover:-translate-y-1">
+                        <div key={index} className="group relative bg-white/60 backdrop-blur-md rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-white/50 hover:-translate-y-1">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
                             <div className="mb-8 flex justify-center">

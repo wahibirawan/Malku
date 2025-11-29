@@ -38,7 +38,7 @@ export default async function Home() {
               {/* Text Content */}
               <div className="space-y-8 text-center lg:text-left">
 
-                <div className="space-y-8">
+                <div className="space-y-6 md:space-y-8">
                   <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-6xl lg:leading-[1.1]">
                     Tunaikan Zakat <br className="hidden lg:block" />
                     <span className="text-primary relative inline-block">
@@ -48,19 +48,19 @@ export default async function Home() {
                       </svg>
                     </span>
                   </h1>
-                  <p className="mx-auto lg:mx-0 max-w-[540px] text-base text-muted-foreground md:text-lg leading-relaxed">
+                  <p className="mx-auto lg:mx-0 max-w-[540px] text-sm text-muted-foreground md:text-lg leading-relaxed">
                     Platform kalkulator zakat terpercaya dengan data real-time. Hitung kewajiban Anda dengan akurat, transparan, dan mudah.
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-4 w-full sm:w-auto px-4 sm:px-0">
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2 md:pt-4 w-full sm:w-auto">
                   <Link href="#calculator" className="w-full sm:w-auto">
-                    <Button size="lg" className="w-full sm:w-auto">
+                    <Button size="default" className="w-full sm:w-auto md:h-11 md:px-8 text-sm md:text-base">
                       Hitung Zakat Sekarang
                     </Button>
                   </Link>
                   <Link href="#how-it-works" className="w-full sm:w-auto">
-                    <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                    <Button variant="outline" size="default" className="w-full sm:w-auto md:h-11 md:px-8 text-sm md:text-base">
                       Pelajari Cara Kerja
                     </Button>
                   </Link>
@@ -126,7 +126,7 @@ export default async function Home() {
         <ZakatObligation />
 
         {/* Calculator Section */}
-        <section className="py-20 relative scroll-mt-20" id="calculator">
+        <section className="py-12 md:py-20 relative scroll-mt-20" id="calculator">
           <div className="container px-4 mx-auto">
             {data && (
               <CalculatorSection
@@ -138,7 +138,7 @@ export default async function Home() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-16 container px-4 mx-auto" id="faq">
+        <section className="py-8 md:py-16 container px-4 mx-auto" id="faq">
           <FAQSection />
         </section>
       </main>

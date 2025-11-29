@@ -104,17 +104,17 @@ export function Calculator({ nisabRecommendedIDR, recommendedGoldPricePerGramIDR
         <div className="p-6 md:p-12 space-y-10">
             <Tabs defaultValue="simple" className="w-full" onValueChange={(val) => { setActiveTab(val); resetResult(); }}>
                 <div className="flex justify-center mb-10">
-                    <TabsList className="grid w-full max-w-md grid-cols-2 h-14 rounded-full p-1.5 bg-muted/50 border border-border/50">
-                        <TabsTrigger value="simple" className="rounded-full text-base font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-primary transition-all">Mode Sederhana</TabsTrigger>
-                        <TabsTrigger value="advanced" className="rounded-full text-base font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-primary transition-all">Mode Rinci</TabsTrigger>
+                    <TabsList className="grid w-full max-w-md grid-cols-2 h-12 md:h-14 rounded-xl p-1.5 bg-muted/50 border border-border/50">
+                        <TabsTrigger value="simple" className="rounded-lg text-sm md:text-base font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-primary transition-all">Mode Sederhana</TabsTrigger>
+                        <TabsTrigger value="advanced" className="rounded-lg text-sm md:text-base font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-primary transition-all">Mode Rinci</TabsTrigger>
                     </TabsList>
                 </div>
 
                 <TabsContent value="simple" className="mt-0">
                     <Card className="border-none shadow-none bg-transparent">
-                        <CardHeader className="px-0 pt-0 text-center pb-8">
-                            <CardTitle className="text-2xl font-bold text-foreground">Hitung Cepat</CardTitle>
-                            <CardDescription className="text-lg">
+                        <CardHeader className="px-0 pt-0 text-center pb-6 md:pb-8">
+                            <CardTitle className="text-xl md:text-2xl font-bold text-foreground">Hitung Cepat</CardTitle>
+                            <CardDescription className="text-base md:text-lg">
                                 Masukkan total harta bersih Anda jika sudah mengetahuinya.
                             </CardDescription>
                         </CardHeader>
@@ -133,7 +133,7 @@ export function Calculator({ nisabRecommendedIDR, recommendedGoldPricePerGramIDR
                                     />
                                 </div>
                             </div>
-                            <Button className="w-full h-14 text-lg font-semibold" onClick={calculateSimple} size="lg">
+                            <Button className="w-full h-11 md:h-14 text-sm md:text-lg font-semibold" onClick={calculateSimple} size="default">
                                 Hitung Zakat Sekarang
                             </Button>
                         </CardContent>
@@ -142,9 +142,9 @@ export function Calculator({ nisabRecommendedIDR, recommendedGoldPricePerGramIDR
 
                 <TabsContent value="advanced" className="mt-0">
                     <Card className="border-none shadow-none bg-transparent">
-                        <CardHeader className="px-0 pt-0 text-center pb-10">
-                            <CardTitle className="text-2xl font-bold text-foreground">Hitung Rinci</CardTitle>
-                            <CardDescription className="text-lg max-w-2xl mx-auto">
+                        <CardHeader className="px-0 pt-0 text-center pb-8 md:pb-10">
+                            <CardTitle className="text-xl md:text-2xl font-bold text-foreground">Hitung Rinci</CardTitle>
+                            <CardDescription className="text-base md:text-lg max-w-2xl mx-auto">
                                 Isi kolom yang relevan dengan harta Anda. <span className="text-primary font-medium">Kosongkan jika tidak ada.</span>
                             </CardDescription>
                         </CardHeader>
@@ -219,7 +219,7 @@ export function Calculator({ nisabRecommendedIDR, recommendedGoldPricePerGramIDR
                                     <p className="text-sm text-muted-foreground">Total Harta Bersih</p>
                                     <p className="text-2xl font-bold text-primary">{formatCurrency(advancedStats.net)}</p>
                                 </div>
-                                <Button className="w-full md:w-auto px-8 h-12 text-base font-semibold" onClick={calculateAdvanced} size="lg">
+                                <Button className="w-full md:w-auto px-8 h-11 md:h-12 text-sm md:text-base font-semibold" onClick={calculateAdvanced} size="default">
                                     Hitung Zakat
                                 </Button>
                             </div>
@@ -263,7 +263,7 @@ export function Calculator({ nisabRecommendedIDR, recommendedGoldPricePerGramIDR
                             <Button
                                 variant={result.status === "wajib" ? "secondary" : "default"}
                                 onClick={resetResult}
-                                className={`rounded-full px-8 h-12 ${result.status === "wajib" ? "bg-white text-primary hover:bg-white/90" : ""}`}
+                                className={`rounded-xl px-8 h-11 md:h-12 text-sm md:text-base ${result.status === "wajib" ? "bg-white text-primary hover:bg-white/90" : ""}`}
                             >
                                 <RotateCcw className="mr-2 h-4 w-4" /> Hitung Ulang
                             </Button>

@@ -12,10 +12,10 @@ export function CalculatorSection({
     recommendedGoldPricePerGramIDR,
 }: CalculatorSectionProps) {
     return (
-        <div className="w-full max-w-5xl mx-auto space-y-16 pb-16" id="calculator">
-            <div className="text-center space-y-6">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-foreground">Kalkulator Zakat</h2>
-                <p className="mx-auto max-w-2xl text-muted-foreground text-lg md:text-xl leading-relaxed">
+        <div className="w-full max-w-5xl mx-auto space-y-8 md:space-y-16 pb-8 md:pb-16" id="calculator">
+            <div className="text-center space-y-4 md:space-y-6">
+                <h2 className="text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl text-foreground">Kalkulator Zakat</h2>
+                <p className="mx-auto max-w-2xl text-muted-foreground text-base md:text-xl leading-relaxed">
                     Hitung kewajiban zakat Anda dengan mudah dan akurat. <br className="hidden md:block" />
                     Transparan, sesuai syariat, dan terpercaya.
                 </p>

@@ -55,7 +55,7 @@ export function NisabCard({
                         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">Nilai Nisab (85g Emas)</p>
                         <div className="flex items-baseline gap-1">
                             <span className="text-xl md:text-2xl font-bold text-muted-foreground/60 ml-1">Rp.</span>
-                            <span className="text-5xl md:text-6xl font-extrabold tracking-tighter text-foreground">
+                            <span className="text-4xl sm:text-4xl md:text-5xl font-extrabold tracking-tighter text-foreground">
                                 {formatCurrency(nisabRecommendedIDR).replace("Rp", "").trim()}
                             </span>
                         </div>
