@@ -129,7 +129,7 @@ export function Calculator({ nisabRecommendedIDR, recommendedGoldPricePerGramIDR
                                         placeholder="0"
                                         value={simpleNetWorth}
                                         onChange={handleCurrencyChange(setSimpleNetWorth)}
-                                        className="pl-12 h-14 text-xl font-semibold rounded-2xl border-border/60 bg-white shadow-sm focus-visible:ring-2 focus-visible:ring-primary/20 transition-all"
+                                        className="pl-12 h-14 text-xl font-semibold rounded-xl border-border/60 bg-white shadow-sm focus-visible:ring-2 focus-visible:ring-primary/20 transition-all"
                                     />
                                 </div>
                             </div>
@@ -214,7 +214,7 @@ export function Calculator({ nisabRecommendedIDR, recommendedGoldPricePerGramIDR
                             </div>
 
                             {/* Summary Bar */}
-                            <div className="bg-muted/30 p-6 rounded-2xl border border-border/50 flex flex-col md:flex-row justify-between items-center gap-4">
+                            <div className="bg-muted/30 p-6 rounded-xl border border-border/50 flex flex-col md:flex-row justify-between items-center gap-4">
                                 <div className="text-center md:text-left">
                                     <p className="text-sm text-muted-foreground">Total Harta Bersih</p>
                                     <p className="text-2xl font-bold text-primary">{formatCurrency(advancedStats.net)}</p>
@@ -230,7 +230,7 @@ export function Calculator({ nisabRecommendedIDR, recommendedGoldPricePerGramIDR
 
             {result && (
                 <div className="mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                    <div className={`rounded-[2rem] p-6 md:p-12 text-center relative overflow-hidden shadow-md transition-colors duration-500 ${result.status === "wajib" ? "bg-primary text-primary-foreground" : "bg-white/60 backdrop-blur-md text-foreground border border-black/5"}`}>
+                    <div className={`rounded-xl p-6 md:p-12 text-center relative overflow-hidden shadow-md transition-colors duration-500 ${result.status === "wajib" ? "bg-primary text-primary-foreground" : "bg-white/60 backdrop-blur-md text-foreground border border-black/5"}`}>
                         {/* Background Pattern - Only for Wajib */}
                         {result.status === "wajib" && (
                             <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">

@@ -2,6 +2,7 @@ import { NisabCard } from "@/components/NisabCard";
 import { CalculatorSection } from "@/components/CalculatorSection";
 import { FAQSection } from "@/components/FAQSection";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { HowItWorks } from "@/components/HowItWorks";
 import { ZakatObligation } from "@/components/ZakatObligation";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -49,7 +50,7 @@ export default async function Home() {
                     </span>
                   </h1>
                   <p className="mx-auto lg:mx-0 max-w-[540px] text-sm text-muted-foreground md:text-lg leading-relaxed">
-                    Platform kalkulator zakat terpercaya dengan data real-time. Hitung kewajiban Anda dengan akurat, transparan, dan mudah.
+                    Kalkulator zakat otomatis dengan acuan harga emas <span className="italic">real-time</span>. Cek nisab zakat terbaru dan hitung kewajiban <span className="font-bold">zakat harta (maal)</span> atau <span className="font-bold">zakat penghasilan</span> dengan akurat.
                   </p>
                 </div>
 
@@ -100,16 +101,16 @@ export default async function Home() {
                 Salurkan Zakat Maal ke lembaga terpercaya:
               </p>
               <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-80">
-                <div className="relative h-16 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
+                <div className="relative h-20 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
                   <img src="/logos/lazismu.png" alt="Lazismu" className="h-full w-auto object-contain" />
                 </div>
-                <div className="relative h-14 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
+                <div className="relative h-16 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
                   <img src="/logos/nucare.png" alt="NU Care-Lazisnu" className="h-full w-auto object-contain" />
                 </div>
-                <div className="relative h-16 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
+                <div className="relative h-20 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
                   <img src="/logos/baznas.png" alt="Baznas" className="h-full w-auto object-contain" />
                 </div>
-                <div className="relative h-10 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
+                <div className="relative h-12 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
                   <img src="/logos/dompet-dhuafa.png" alt="Dompet Dhuafa" className="h-full w-auto object-contain" />
                 </div>
               </div>
@@ -138,17 +139,19 @@ export default async function Home() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-8 md:py-16 container px-4 mx-auto" id="faq">
+        <section className="py-12 md:py-20 container px-4 mx-auto" id="faq">
           <FAQSection />
+          <div className="text-center">
+            <Link href="/faq">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto md:h-11 md:px-8 text-sm md:text-base">
+                Lihat Semua Pertanyaan
+              </Button>
+            </Link>
+          </div>
         </section>
       </main>
 
-      <footer className="py-12 border-t border-border/40">
-        <div className="container px-4 md:px-6 mx-auto max-w-6xl text-center text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Malku. All rights reserved.</p>
-          <p className="text-sm mt-2">Dibuat dengan <span className="text-red-500">❤</span> untuk umat.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

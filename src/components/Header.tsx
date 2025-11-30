@@ -21,7 +21,7 @@ export function Header() {
     return (
         <>
             <header
-                className={`fixed top-3 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl rounded-2xl transition-all duration-300 ${isScrolled && !isMobileMenuOpen
+                className={`fixed top-3 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl rounded-xl transition-all duration-300 ${isScrolled && !isMobileMenuOpen
                     ? "bg-white/80 backdrop-blur-md border border-border/40 shadow-lg"
                     : "bg-transparent border-transparent shadow-none"
                     }`}
@@ -89,7 +89,7 @@ export function Header() {
                             Cara Hitung
                         </Link>
                         <Link
-                            href="#faq"
+                            href="/faq"
                             className="text-lg font-medium py-2 border-b border-border/50 hover:text-primary transition-colors"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >

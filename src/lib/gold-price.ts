@@ -37,7 +37,8 @@ export type GoldPriceData = {
 
 async function getAnekaLogamPrice(): Promise<GoldPriceSource | null> {
     try {
-        const response = await fetch('https://anekalogam.co.id/id/logam-mulia', {
+        // Updated URL as per user request
+        const response = await fetch('https://anekalogam.co.id/id/', {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
                 'Cache-Control': 'no-cache'
@@ -50,25 +51,30 @@ async function getAnekaLogamPrice(): Promise<GoldPriceSource | null> {
         const html = await response.text();
         const $ = cheerio.load(html);
 
-        // Strategy: Look for "1 gram" text and then find the price associated with it.
-        // Based on analysis, the structure is complex, but we know the price is around "1 gram".
-        // We'll look for the specific "LM ANTAM Reinvented dengan Certicard" section or just generic 1 gram.
-
-        // Let's try to find all table rows or list items
         let price = 0;
 
-        // Search for text "1 gram" and look at siblings/parents
-        $('body').find('*').each((i, el) => {
-            const text = $(el).text().trim();
-            if (text.includes('1 gram') && text.includes('Rp')) {
-                // Try to extract price from this text block if it contains the full row data
-                // Example text might be "1 gram Rp 1.500.000"
-                const priceMatch = text.match(/Rp\s*([0-9.]+)/);
+        // Strategy: Find "Harga LM Hari Ini" section -> class "buy-sell-rate" -> "Harga Jual" -> class "today-price"
+        // We look for the container that likely holds this structure.
+
+        // Find the "Harga Jual" text, then look for the price associated with it.
+        // Based on user description:
+        // <div class="buy-sell-rate"> ... terms "Harga Jual" ... <div class="today-price">...</div> ... </div>
+
+        // Let's try to find the specific structure
+        $('.buy-sell-rate').each((i, el) => {
+            const text = $(el).text();
+            if (text.includes('Harga Jual')) {
+                // Found the block. Now find the price.
+                const priceEl = $(el).find('.today-price');
+                const priceText = priceEl.text().trim();
+
+                // Extract number from "Rp 1.500.000" or similar
+                const priceMatch = priceText.match(/([0-9]{1,3}\.[0-9]{3}\.[0-9]{3}|[0-9]{1,3}\.[0-9]{3})/);
+
                 if (priceMatch) {
-                    const priceStr = priceMatch[1].replace(/\./g, '');
+                    const priceStr = priceMatch[0].replace(/\./g, '');
                     const parsed = parseInt(priceStr);
-                    // Sanity check: Gold price per gram should be between 1M and 2M (approx)
-                    if (parsed > 1000000 && parsed < 5000000) {
+                    if (parsed > 1000000) {
                         price = parsed;
                         return false; // Break loop
                     }
@@ -76,27 +82,17 @@ async function getAnekaLogamPrice(): Promise<GoldPriceSource | null> {
             }
         });
 
-        // If simple text search failed, try more specific selectors if we knew them.
-        // But for now, let's try a more robust regex on the whole body text if needed, 
-        // but the element traversal is safer to avoid hidden text.
-
+        // Fallback: If the specific structure isn't found (maybe class names changed), try a broader search
         if (price === 0) {
-            // Fallback: Try to find the specific price we saw in research "2.925.000" pattern
-            // This is risky if price changes, but we need a robust selector.
-            // Let's try to find the table cell.
-            // Often these are in <td> or <div>.
-
-            // Let's try to find a cell with "1 gram" and get the next cell.
-            $('td, div').each((i, el) => {
-                if ($(el).text().trim().toLowerCase() === '1 gram') {
-                    // Check next siblings for price
-                    const next = $(el).next();
-                    const nextText = next.text().trim();
-                    const priceMatch = nextText.match(/([0-9]{1,3}\.[0-9]{3}\.[0-9]{3}|[0-9]{1,3}\.[0-9]{3})/);
+            $('body').find('*').each((i, el) => {
+                const text = $(el).text().trim();
+                // Look for "Harga Jual" and "Rp" in close proximity or same block
+                if (text.includes('Harga Jual') && text.includes('Rp')) {
+                    const priceMatch = text.match(/Rp\s*([0-9]{1,3}\.[0-9]{3}\.[0-9]{3}|[0-9]{1,3}\.[0-9]{3})/);
                     if (priceMatch) {
-                        const priceStr = priceMatch[0].replace(/\./g, '');
+                        const priceStr = priceMatch[1].replace(/\./g, '');
                         const parsed = parseInt(priceStr);
-                        if (parsed > 1000000) {
+                        if (parsed > 1000000 && parsed < 5000000) {
                             price = parsed;
                             return false;
                         }
@@ -110,7 +106,8 @@ async function getAnekaLogamPrice(): Promise<GoldPriceSource | null> {
                 name: 'Aneka Logam (Antam)',
                 price: price,
                 currency: 'IDR',
-                unit: 'gram'
+                unit: 'gram',
+                lastUpdated: new Date().toISOString()
             };
         }
 
@@ -188,32 +185,33 @@ export async function getGoldPriceData(): Promise<GoldPriceData> {
     // 2. Normalize all to IDR per gram
     const validPrices = sources.map(s => normalizePriceToIDRPerGram(s, fxRate));
 
-    if (validPrices.length === 0) {
-        // Fallback to a safe default if everything fails (prevents app crash)
-        // Using a realistic fallback price (approx 1.5M IDR)
-        console.warn("All gold price sources failed. Using fallback data.");
-        const fallbackPrice = 1500000;
-        validPrices.push(fallbackPrice);
+    // 3. Determine Recommended Price
+    // Logic: Use Aneka Logam (Antam) as the PRIMARY source.
+    // Global price is only used for range reference (min/max).
+
+    let recommendedPrice = 0;
+
+    if (anekaLogam) {
+        recommendedPrice = anekaLogam.price;
+    } else if (validPrices.length > 0) {
+        // Fallback to average if Antam fails but Global exists
+        recommendedPrice = validPrices.reduce((a, b) => a + b, 0) / validPrices.length;
+        console.warn("Aneka Logam fetch failed, using fallback average.");
+    } else {
+        // Total failure fallback
+        console.warn("All gold price sources failed. Using hardcoded fallback.");
+        recommendedPrice = 1550000; // Updated fallback
+        validPrices.push(recommendedPrice);
     }
 
-    // 3. Calculate statistics
+    const recommendedPriceRounded = Math.round(recommendedPrice / 1000) * 1000;
+
+    // 4. Calculate Statistics (Min/Max based on all available sources)
     const minPrice = Math.min(...validPrices);
     const maxPrice = Math.max(...validPrices);
     const avgPrice = validPrices.reduce((a, b) => a + b, 0) / validPrices.length;
 
-    // Recommended price logic:
-    // If we have Aneka Logam (local physical), prefer it or average it with global.
-    // Since user said "gunakan harga jual sebagai acuan. itu kan emas antam", we should prioritize it.
-    // But also "biar lebih kredibel. cari informasi harga emas dunia juga".
-    // Let's use the average for "recommended" to be safe and balanced, 
-    // but maybe lean towards the higher one for Zakat safety (Ahwath).
-    // Actually, for Zakat, usually the sell price (harga jual) is used.
-    // Let's use the average of available valid sources.
-
-    const recommendedPrice = avgPrice;
-    const recommendedPriceRounded = Math.round(recommendedPrice / 1000) * 1000;
-
-    // 4. Calculate Nisab (85 grams)
+    // 5. Calculate Nisab (85 grams)
     const NISAB_GRAMS = 85;
     const nisabMinIDR = minPrice * NISAB_GRAMS;
     const nisabMaxIDR = maxPrice * NISAB_GRAMS;
