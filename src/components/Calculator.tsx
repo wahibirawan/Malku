@@ -129,7 +129,7 @@ export function Calculator({ nisabRecommendedIDR, recommendedGoldPricePerGramIDR
                                         placeholder="0"
                                         value={simpleNetWorth}
                                         onChange={handleCurrencyChange(setSimpleNetWorth)}
-                                        className="pl-12 h-14 text-xl font-semibold rounded-xl border-border/60 bg-white shadow-sm focus-visible:ring-2 focus-visible:ring-primary/20 transition-all"
+                                        className="pl-12 h-12 md:h-14 text-lg md:text-xl font-semibold rounded-xl border-border/60 bg-white shadow-sm focus-visible:ring-2 focus-visible:ring-primary/20 transition-all"
                                     />
                                 </div>
                             </div>
@@ -155,17 +155,17 @@ export function Calculator({ nisabRecommendedIDR, recommendedGoldPricePerGramIDR
                                     <Label className="text-sm font-semibold text-foreground">Kas dan Tabungan</Label>
                                     <div className="relative group">
                                         <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium group-focus-within:text-primary transition-colors">Rp</span>
-                                        <Input type="text" value={cash} onChange={handleCurrencyChange(setCash)} placeholder="0" className="pl-12 h-12 rounded-xl border-border/60 bg-white shadow-sm focus-visible:ring-primary/20" />
+                                        <Input type="text" value={cash} onChange={handleCurrencyChange(setCash)} placeholder="0" className="pl-12 h-10 md:h-12 rounded-xl border-border/60 bg-white shadow-sm focus-visible:ring-primary/20" />
                                     </div>
                                     <p className="text-xs text-muted-foreground">Saldo bank, e-wallet, uang tunai.</p>
                                 </div>
 
                                 {/* Emas */}
                                 <div className="space-y-3">
-                                    <Label className="text-sm font-semibold text-foreground">Emas & Logam Mulia</Label>
+                                    <Label className="text-sm font-semibold text-foreground">Aset Emas</Label>
                                     <div className="relative group">
-                                        <Input type="number" value={goldGrams} onChange={(e) => setGoldGrams(e.target.value)} placeholder="0" className="pr-16 h-12 rounded-xl border-border/60 bg-white shadow-sm focus-visible:ring-primary/20" />
-                                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">gram</span>
+                                        <Input type="number" value={goldGrams} onChange={(e) => setGoldGrams(e.target.value)} placeholder="0" className="pr-16 h-10 md:h-12 rounded-xl border-border/60 bg-white shadow-sm focus-visible:ring-primary/20" />
+                                        <span className="text-sm absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">gram</span>
                                     </div>
                                     <p className="text-xs text-primary font-medium">
                                         Nilai: {formatCurrency((Number(goldGrams) || 0) * recommendedGoldPricePerGramIDR)}
@@ -177,7 +177,7 @@ export function Calculator({ nisabRecommendedIDR, recommendedGoldPricePerGramIDR
                                     <Label className="text-sm font-semibold text-foreground">Investasi Likuid</Label>
                                     <div className="relative group">
                                         <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium group-focus-within:text-primary transition-colors">Rp</span>
-                                        <Input type="text" value={investments} onChange={handleCurrencyChange(setInvestments)} placeholder="0" className="pl-12 h-12 rounded-xl border-border/60 bg-white shadow-sm focus-visible:ring-primary/20" />
+                                        <Input type="text" value={investments} onChange={handleCurrencyChange(setInvestments)} placeholder="0" className="pl-12 h-10 md:h-12 rounded-xl border-border/60 bg-white shadow-sm focus-visible:ring-primary/20" />
                                     </div>
                                     <p className="text-xs text-muted-foreground">Saham, reksadana, sukuk cair.</p>
                                 </div>
@@ -187,7 +187,7 @@ export function Calculator({ nisabRecommendedIDR, recommendedGoldPricePerGramIDR
                                     <Label className="text-sm font-semibold text-foreground">Aset Usaha</Label>
                                     <div className="relative group">
                                         <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium group-focus-within:text-primary transition-colors">Rp</span>
-                                        <Input type="text" value={businessAssets} onChange={handleCurrencyChange(setBusinessAssets)} placeholder="0" className="pl-12 h-12 rounded-xl border-border/60 bg-white shadow-sm focus-visible:ring-primary/20" />
+                                        <Input type="text" value={businessAssets} onChange={handleCurrencyChange(setBusinessAssets)} placeholder="0" className="pl-12 h-10 md:h-12 rounded-xl border-border/60 bg-white shadow-sm focus-visible:ring-primary/20" />
                                     </div>
                                     <p className="text-xs text-muted-foreground">Stok barang & aset lancar.</p>
                                 </div>
@@ -197,7 +197,7 @@ export function Calculator({ nisabRecommendedIDR, recommendedGoldPricePerGramIDR
                                     <Label className="text-sm font-semibold text-foreground">Piutang Lancar</Label>
                                     <div className="relative group">
                                         <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium group-focus-within:text-primary transition-colors">Rp</span>
-                                        <Input type="text" value={receivables} onChange={handleCurrencyChange(setReceivables)} placeholder="0" className="pl-12 h-12 rounded-xl border-border/60 bg-white shadow-sm focus-visible:ring-primary/20" />
+                                        <Input type="text" value={receivables} onChange={handleCurrencyChange(setReceivables)} placeholder="0" className="pl-12 h-10 md:h-12 rounded-xl border-border/60 bg-white shadow-sm focus-visible:ring-primary/20" />
                                     </div>
                                     <p className="text-xs text-muted-foreground">Piutang yang akan dibayar.</p>
                                 </div>
@@ -207,7 +207,7 @@ export function Calculator({ nisabRecommendedIDR, recommendedGoldPricePerGramIDR
                                     <Label className="text-sm font-semibold text-destructive">Utang Jatuh Tempo</Label>
                                     <div className="relative group">
                                         <span className="absolute left-4 top-1/2 -translate-y-1/2 text-destructive/60 font-medium group-focus-within:text-destructive transition-colors">Rp</span>
-                                        <Input type="text" value={debts} onChange={handleCurrencyChange(setDebts)} placeholder="0" className="pl-12 h-12 rounded-xl border-destructive/30 bg-destructive/5 shadow-sm focus-visible:ring-destructive/20" />
+                                        <Input type="text" value={debts} onChange={handleCurrencyChange(setDebts)} placeholder="0" className="pl-12 h-10 md:h-12 rounded-xl border-destructive/30 bg-destructive/5 shadow-sm focus-visible:ring-destructive/20" />
                                     </div>
                                     <p className="text-xs text-muted-foreground">Mengurangi wajib zakat.</p>
                                 </div>

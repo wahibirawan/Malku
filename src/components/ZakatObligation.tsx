@@ -1,4 +1,5 @@
 import { IllustrationTime } from "./illustrations/IllustrationTime";
+import { ZakatReminderModal } from "./ZakatReminderModal";
 
 export function ZakatObligation() {
     return (
@@ -52,6 +53,10 @@ export function ZakatObligation() {
                                 "Ambillah zakat dari sebagian harta mereka, dengan zakat itu kamu membersihkan dan mensucikan mereka..."
                             </p>
                             <p className="text-xs font-semibold text-primary mt-2">— QS. At-Taubah: 103</p>
+                        </div>
+
+                        <div className="pt-4">
+                            <ZakatReminderModal />
                         </div>
                     </div>
 

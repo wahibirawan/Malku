@@ -30,7 +30,7 @@ export default async function Home() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden pt-32 pb-24 lg:pt-48 lg:pb-24 bg-background">
+        <section id="about" className="relative overflow-hidden pt-32 pb-24 lg:pt-48 lg:pb-24 bg-background">
           {/* Subtle Background Gradient */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-background to-background -z-10" />
 

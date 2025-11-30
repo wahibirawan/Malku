@@ -41,19 +41,19 @@ export function Header() {
 
                     {/* Desktop Nav */}
                     <nav className="hidden md:flex items-center gap-6">
-                        <Link href="#about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                        <Link href="/#about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                             Tentang
                         </Link>
-                        <Link href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                        <Link href="/#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                             Cara Hitung
                         </Link>
-                        <Link href="#faq" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                        <Link href="/faq" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                             FAQ
                         </Link>
                     </nav>
 
                     <div className="flex items-center gap-4">
-                        <Link href="#calculator" className="hidden md:block">
+                        <Link href="/#calculator" className="hidden md:block">
                             <Button>Hitung Zakat</Button>
                         </Link>
 
@@ -75,14 +75,14 @@ export function Header() {
                 <div className="fixed inset-0 z-40 bg-background pt-20 px-6 md:hidden animate-in fade-in slide-in-from-top-5 duration-200">
                     <nav className="flex flex-col gap-6 text-center">
                         <Link
-                            href="#about"
+                            href="/#about"
                             className="text-lg font-medium py-2 border-b border-border/50 hover:text-primary transition-colors"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Tentang
                         </Link>
                         <Link
-                            href="#how-it-works"
+                            href="/#how-it-works"
                             className="text-lg font-medium py-2 border-b border-border/50 hover:text-primary transition-colors"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
@@ -95,7 +95,7 @@ export function Header() {
                         >
                             FAQ
                         </Link>
-                        <Link href="#calculator" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 w-full">
+                        <Link href="/#calculator" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 w-full">
                             <Button className="w-full h-11 text-sm font-semibold rounded-xl shadow-md">
                                 Hitung Zakat Sekarang
                             </Button>

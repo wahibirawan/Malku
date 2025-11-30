@@ -65,7 +65,7 @@ export function FAQPage() {
             {/* Header Section */}
             <div className="bg-primary/5 border-b border-primary/10 pt-28 pb-12 md:pt-40 md:pb-20">
                 <div className="container px-4 mx-auto max-w-4xl text-center space-y-4 md:space-y-6">
-                    <div className="inline-flex items-center justify-center p-2.5 md:p-3 bg-primary/10 rounded-2xl mb-2">
+                    <div className="inline-flex items-center justify-center p-2.5 md:p-3 bg-white rounded-full mb-2">
                         <HelpCircle className="w-6 h-6 md:w-8 md:h-8 text-primary" />
                     </div>
                     <h1 className="text-2xl md:text-5xl font-bold tracking-tight text-foreground">
@@ -147,7 +147,7 @@ export function FAQPage() {
                                 return (
                                     <section key={category.id} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                                         <div className="flex items-center gap-3 mb-4 md:mb-6">
-                                            <div className="p-2 bg-primary/10 rounded-xl">
+                                            <div className="p-2 bg-primary/5 rounded-xl">
                                                 <Icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                                             </div>
                                             <h2 className="text-xl md:text-2xl font-bold text-foreground">{category.title}</h2>
@@ -201,7 +201,7 @@ export function FAQPage() {
 
             {/* Footer CTA */}
             <div className="container px-4 mx-auto max-w-4xl mt-16 md:mt-24 text-center">
-                <div className="bg-primary/5 rounded-2xl p-6 md:p-12 border border-primary/10">
+                <div className="bg-primary/3 rounded-2xl p-6 md:p-12 border border-black/2">
                     <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">Masih bingung menghitung zakat?</h3>
                     <p className="text-sm md:text-base text-muted-foreground mb-6 md:mb-8 max-w-xl mx-auto">
                         Gunakan kalkulator otomatis kami untuk mendapatkan perhitungan yang akurat sesuai harga emas hari ini.
